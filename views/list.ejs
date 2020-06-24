@@ -1,0 +1,25 @@
+<div class="container" style="position: absolute; left:50%">
+   <% if(files){ %>
+          <% files.forEach(function(file) { %>
+            <div class="card card-body mb-3" >
+              <% if(file.isImage) { %>
+
+
+                <div>
+                   <img src="image/<%= file.filename %>" alt="" style="width:200; height: 200; display: block">
+                   <a href="/download/ + <%=file._id %>" class="text-primary">Download</a>
+                </div>
+
+               
+                <% } else { %>
+                  <%= file.filename %>
+                    <% } %>
+                      <form method="POST" action="/files/<%= file._id %>?_method=DELETE">
+                        <button class="btn btn-danger btn-block mt-4">Delete</button>
+                      </form>
+            </div>
+            <% }) %>
+              <% } else { %>
+                <p>No files to show</p>
+                <% } %>
+</div>
